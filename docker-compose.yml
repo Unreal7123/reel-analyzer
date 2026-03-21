@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: reelscan-backend
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    ports:
+      - "8000:8000"   # exposed for direct API access if needed
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        VITE_API_URL: /api
+    container_name: reelscan-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_healthy
