@@ -9,12 +9,13 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
     ports:
-      - "8000:8000"   # exposed for direct API access if needed
+      - "8000:8000"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
+      interval: 15s
       timeout: 10s
-      retries: 3
+      retries: 5
+      start_period: 40s      # give backend time to fully import spaCy/Playwright
 
   frontend:
     build:

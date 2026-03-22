@@ -84,7 +84,7 @@ def _build_summary(rc: ResultCase, nlp: NLPResult, resources: list[ExtractedReso
 
 
 def build_response(post_url: str, nlp: NLPResult, resources: list[ExtractedResource],
-                   metadata: dict = {}, processing_time_ms: int = 0,
+                   metadata: dict | None = None, processing_time_ms: int = 0,
                    error: str | None = None) -> AnalyzeResponse:
 
     result_case = resolve_result_case(nlp, resources)
@@ -108,7 +108,7 @@ def build_response(post_url: str, nlp: NLPResult, resources: list[ExtractedResou
         # Even without text keywords, spam pattern is suspicious
         suggested_action = "High comment activity detected — may use emoji-based DM automation"
 
-    spam_analysis = _build_spam_analysis_from_meta(metadata)
+    spam_analysis = _build_spam_analysis_from_meta(metadata or {})
     summary = _build_summary(result_case, nlp, resources, spam_analysis, suggested_action)
 
     return AnalyzeResponse(
