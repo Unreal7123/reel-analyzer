@@ -1,5 +1,5 @@
 import ConfidenceBar from "./ConfidenceBar";
-import ResourceCard from "./ResourceCard";
+import { ResourceCard } from "./ScanLines";
 
 export default function ResultPanel({ result, loading, error, lastUrl }) {
   if (loading) return <LoadingState />;
