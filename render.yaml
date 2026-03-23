@@ -26,10 +26,7 @@ services:
     staticPublishPath: frontend/dist
     envVars:
       - key: VITE_API_URL
-        fromService:
-          name: reelscan-api
-          type: web
-          property: host
+        value: https://reelscan-api.onrender.com
     routes:
       - type: rewrite
         source: /*

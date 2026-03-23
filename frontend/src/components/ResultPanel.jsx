@@ -1,4 +1,3 @@
-import { ResourceCard } from "./ScanLines";
 import ConfidenceBar    from "./ConfidenceBar";
 
 export default function ResultPanel({ result, loading, error, step }) {
