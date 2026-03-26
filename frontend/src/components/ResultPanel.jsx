@@ -238,7 +238,7 @@ function SpamSection({ spam }) {
           <div className="spam-col-hdr">TOP REPEATED COMMENTS</div>
           {spam.top_comments?.slice(0, 5).map((c, i) => (
             <div key={i} className="spam-item">
-              <span className="spam-text">"{c.text}"</span>
+              <span className="spam-text">{`"${c.text}"`}</span>
               <span className="spam-cnt">×{c.count}</span>
             </div>
           ))}

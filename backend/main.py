@@ -5,11 +5,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from models import AnalyzeRequest, AnalyzeResponse
-from scraper import scrape_reel
-from data_processor import process_scraped_data
-from nlp_detector import detect_automation
-from link_extractor import extract_resources
-from inference_engine import build_response
+from agents.scraper import scrape_reel
+from agents.data_processor import process_scraped_data
+from agents.nlp_detector import detect_automation
+from agents.link_extractor import extract_resources
+from agents.inference_engine import build_response
 
 logging.basicConfig(level=logging.INFO,
     format="%(asctime)s | %(levelname)-8s | %(name)s — %(message)s")

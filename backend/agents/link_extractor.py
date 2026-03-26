@@ -14,6 +14,8 @@ import asyncio
 from urllib.parse import urlparse
 import httpx
 
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models import ScrapedData, ExtractedResource, FileType
 
 logger = logging.getLogger(__name__)

@@ -10,6 +10,8 @@ import logging
 from collections import Counter
 from typing import Optional
 import httpx
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models import ScrapedData
 
 logger = logging.getLogger(__name__)

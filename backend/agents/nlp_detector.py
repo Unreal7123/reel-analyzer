@@ -8,6 +8,8 @@ signals alongside the text-based rule patterns.
 import re
 import logging
 from collections import Counter
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models import ScrapedData, NLPResult, SpamAnalysis, TopComment, TopEmoji
 
 logger = logging.getLogger(__name__)
