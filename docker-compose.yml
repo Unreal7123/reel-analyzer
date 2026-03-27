@@ -6,16 +6,28 @@ services:
       dockerfile: Dockerfile.backend
     container_name: reelscan-backend
     restart: unless-stopped
+    # Load .env file if present (never commit real tokens to git)
+    env_file:
+      - path: .env
+        required: false
     environment:
       - PYTHONUNBUFFERED=1
+      # Uncomment and fill these to enable authenticated scraping
+      # (or set them in .env — see .env.example)
+      # - INSTAGRAM_SESSIONID=
+      # - INSTAGRAM_CSRFTOKEN=
+      # - INSTAGRAM_DS_USER_ID=
+      # - INSTAGRAM_MID=
+      # - INSTAGRAM_IG_DID=
+      # - FACEBOOK_ACCESS_TOKEN=
     ports:
       - "8000:8000"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 15s
+      interval: 20s
       timeout: 10s
       retries: 5
-      start_period: 40s      # give backend time to fully import spaCy/Playwright
+      start_period: 60s   # Playwright + spaCy import takes ~30-40 s cold-start
 
   frontend:
     build:
